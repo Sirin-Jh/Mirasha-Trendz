@@ -253,10 +253,11 @@ whatsappCheckoutBtn.addEventListener('click', () => {
     let totalPrice = 0;
 
     cart.forEach((item, index) => {
+        const absoluteImageUrl = new URL(item.image, window.location.href).href;
         messageStr += `${index + 1}. Product: ${item.name}\n`;
         messageStr += `   Qty: ${item.quantity}\n`;
         messageStr += `   Price: AED ${item.price.toFixed(2)}\n`;
-        messageStr += `   Image: ${item.image}\n\n`;
+        messageStr += `   Image: ${absoluteImageUrl}\n\n`;
         totalPrice += item.price * item.quantity;
     });
 
