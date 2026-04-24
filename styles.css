@@ -387,6 +387,17 @@ img {
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product-price-original {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 .product-actions {

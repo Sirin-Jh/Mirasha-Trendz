@@ -104,7 +104,10 @@ function renderProducts(filterStr) {
             <img src="${product.image}" alt="${product.name}" class="product-image">
             <div class="product-category">${product.category}</div>
             <h3 class="product-title">${product.name}</h3>
-            <div class="product-price">AED ${product.price.toFixed(2)}</div>
+            <div class="product-price">
+                <span class="product-price-original">AED ${(product.price * 1.5).toFixed(2)}</span>
+                AED ${product.price.toFixed(2)}
+            </div>
             <div class="product-actions">
                 <button class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</button>
             </div>
@@ -253,12 +256,16 @@ whatsappCheckoutBtn.addEventListener('click', () => {
     let totalPrice = 0;
 
     cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
         const absoluteImageUrl = new URL(item.image, window.location.href).href;
         messageStr += `${index + 1}. Product: ${item.name}\n`;
         messageStr += `   Qty: ${item.quantity}\n`;
         messageStr += `   Price: AED ${item.price.toFixed(2)}\n`;
+        if (item.quantity > 1) {
+            messageStr += `   Item Total: AED ${itemTotal.toFixed(2)}\n`;
+        }
         messageStr += `   Image: ${absoluteImageUrl}\n\n`;
-        totalPrice += item.price * item.quantity;
+        totalPrice += itemTotal;
     });
 
     messageStr += `Total: AED ${totalPrice.toFixed(2)}\n\n`;
