@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- Product Rendering & Filtering ---
 function renderProducts(filterStr) {
     productList.innerHTML = '';
-    
-    const filtered = filterStr === 'All' 
-        ? products 
+
+    const filtered = filterStr === 'All'
+        ? products
         : products.filter(p => p.category === filterStr);
 
     filtered.forEach(product => {
@@ -126,7 +126,7 @@ filterBtns.forEach(btn => {
         // Render
         const filterStr = e.target.getAttribute('data-filter');
         renderProducts(filterStr);
-        
+
         // Scroll to products
         document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     });
@@ -146,7 +146,7 @@ categoryCards.forEach(card => {
 });
 
 // --- Cart Logic ---
-window.addToCart = function(productId) {
+window.addToCart = function (productId) {
     const productDef = products.find(p => p.id === productId);
     if (!productDef) return;
 
@@ -168,7 +168,7 @@ window.addToCart = function(productId) {
     openCart();
 };
 
-window.updateQuantity = function(productId, delta) {
+window.updateQuantity = function (productId, delta) {
     const item = cart.find(i => i.id === productId);
     if (!item) return;
 
@@ -181,7 +181,7 @@ window.updateQuantity = function(productId, delta) {
     }
 };
 
-window.removeFromCart = function(productId) {
+window.removeFromCart = function (productId) {
     cart = cart.filter(i => i.id !== productId);
     saveCart();
     updateCartUI();
@@ -273,14 +273,14 @@ whatsappCheckoutBtn.addEventListener('click', () => {
 
     const encodedMessage = encodeURIComponent(messageStr);
     const whatsappUrl = `https://wa.me/971555162033?text=${encodedMessage}`;
-    
+
     window.open(whatsappUrl, '_blank');
 });
 
 // --- Scroll Animations ---
 function initScrollAnimations() {
     const elements = document.querySelectorAll('.fade-in-on-scroll');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
